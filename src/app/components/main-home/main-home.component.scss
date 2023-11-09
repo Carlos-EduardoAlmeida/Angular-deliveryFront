@@ -1,0 +1,39 @@
+@mixin flexstylus{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-home__container{
+    width: 100%;
+    .main-home__container__top{
+        height: 40vh;
+        background-color: #e92f48;
+        border-radius: 0px 0px 35% 35%;
+        position: relative;
+        @include flexstylus();
+        img{
+            position: absolute;
+            top: 20%;
+        }
+    }
+    .main-home__container__lower{
+        @include flexstylus();
+        height: 60vh;
+        input{
+            margin-right: 15px;
+            @include flexstylus();
+            cursor: pointer;
+            border: 3px solid #e92f48;
+            color: #e92f48;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 10px;
+            width: 280px;
+            height: 70px;
+            &:hover{
+                background-color: #dadada;
+            }
+        }
+    }
+}

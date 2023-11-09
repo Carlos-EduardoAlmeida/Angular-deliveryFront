@@ -1,0 +1,52 @@
+@mixin flexstylus{
+    display: flex;
+    justify-content: center;
+}
+
+.login__container{
+    @include flexstylus();
+    flex-direction: column;
+    width: 500px;
+    background-color: white;
+    border-radius: 30px;
+    padding: 25px 50px;
+
+    .login__top{
+        .login__top__header{
+            @include flexstylus();
+            justify-content: space-between;
+        }
+        h1{
+            @include flexstylus();
+            margin: 15px 0px 50px 0px; 
+        }
+    }
+    .login__form{
+        @include flexstylus();
+        flex-direction: column;
+        align-items: center;
+        input{
+            width: 100%;
+            padding: 14px 10px;
+            border: none;
+            border-bottom: #e92f48 solid 5px;
+            border-radius: 5px;
+            background: #ececec;
+        }
+        button{
+            margin-top: 15px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+
+            background-color: #e92f48;
+            color: white;
+            border-radius: 10px;
+            width: 200px;
+            height: 50px;
+            &:hover{
+                background-color: #b0261a;
+            }
+        }
+    }
+}

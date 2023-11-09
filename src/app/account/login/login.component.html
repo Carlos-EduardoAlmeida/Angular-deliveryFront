@@ -1,0 +1,20 @@
+<div class="login__container">
+    <div class="login__top">
+        <div class="login__top__header">
+            <h4>Bem vindo ao</h4>
+
+            <div>
+                <h4>Não possui conta?</h4>
+                <a [routerLink]="['/create-account']">Cadastre-se</a>
+            </div>
+        </div>
+        <h1>Login</h1>
+    </div>
+
+    <div class="login__form">
+        <input type="email" placeholder="Email" [(ngModel)]="login.email" required />
+        <input type="password" placeholder="Password" [(ngModel)]="login.password" required />
+
+        <button type="button" (click)="onSubmit()">Entrar</button>
+    </div>
+</div>

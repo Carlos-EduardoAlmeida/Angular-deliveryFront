@@ -1,0 +1,40 @@
+<div class="profile__container">
+    <div class="profile__user" [ngSwitch]="optionUser">
+        <div *ngSwitchDefault="false">
+            <h1>Usuário</h1>
+            <p>CARLOS EDUARDO</p>
+            <br>
+            <p>Email: carlos-gmail.com</p>
+
+            <button type="button" (click)="modifeUser()">Modificar</button>
+        </div>
+
+        <div *ngSwitchCase="true" class="profile__user__modife">
+            <h1>Modificar Usuário</h1>
+            <input type="text" placeholder="Nome" name="newName" id="name">
+            <input type="email" placeholder="Email" name="newEmail" id="email"> 
+            <input type="password" placeholder="Senha" name="newPassword" id="newPassword">
+            <button type="button" (click)="modifeUser()">Cancelar</button>
+        </div>
+    </div>
+
+
+    <div class="profile__address" [ngSwitch]="optionUser">
+        <div *ngSwitchDefault="false">
+            <h1>Endereço</h1>
+            <p>CARLOS EDUARDO</p>
+            <br>
+            <p>Email: carlos-gmail.com</p>
+
+            <button type="button" (click)="modifeUser()">Modificar</button>
+        </div>
+
+        <div *ngSwitchCase="true" class="profile__address__modife">
+            <h1>Modificar Endereço</h1>
+            <input type="text" placeholder="Cep" name="cep" id="cep">
+            <input type="email" placeholder="Email" name="newEmail" id="email"> 
+            <input type="password" placeholder="Senha" name="newPassword" id="newPassword">
+            <button type="button" (click)="modifeUser()">Cancelar</button>
+        </div>
+    </div>
+</div>

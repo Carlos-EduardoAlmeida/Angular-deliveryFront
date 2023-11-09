@@ -1,0 +1,21 @@
+<div class="register__container">
+    <div class="register__top">
+        <div class="register__top__header">
+            <h4>Bem vindo ao</h4>
+
+            <div>
+                <h4>Já possui conta?</h4>
+                <a [routerLink]="['/login']">Login</a>
+            </div>
+        </div>
+        <h1>Cadastre-se</h1>
+    </div>
+
+    <div class="register__form">
+        <input type="text" placeholder="Nome Completo" [(ngModel)]="register.name" required />
+        <input type="text" placeholder="Email" [(ngModel)]="register.email" required />
+        <input type="password" placeholder="Password" [(ngModel)]="register.password" required />
+
+        <button type="button" (click)="onSubmit()">Cadastrar</button>
+    </div>
+</div>

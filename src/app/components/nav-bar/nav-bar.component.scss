@@ -1,0 +1,38 @@
+.nav-bar__container{
+    background-color: #e92f48;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    .nav-bar__logo{
+        &:hover{
+            transform: scale(1.2); 
+        }
+    }
+    .nav-bar__links{
+        ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            li{
+                font-size: 1em;
+                margin-right: 20px;
+                list-style: none;
+                padding: 6px 12px;
+                a{
+                    text-decoration: none;
+                    color: rgb(231, 231, 231);
+                    &:hover{
+                        font-weight: bold;
+                        color: white;
+                    }
+                }
+            }
+        }
+    }
+    .nav-bar__logout{
+        margin-right: 10px;
+        &:hover{
+            transform: scale(1.2); 
+        }
+    }
+}
