@@ -7,9 +7,12 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
   optionUser: boolean = false;
-
+  optionAddress: boolean = false;
 
   modifeUser(): void{
     this.optionUser ? this.optionUser = false : this.optionUser = true;
  }
+ modifeAddress(): void{
+  this.optionAddress ? this.optionAddress = false : this.optionAddress = true;
+}
 }

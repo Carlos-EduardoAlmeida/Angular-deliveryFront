@@ -1,0 +1,35 @@
+<div class="my-orders__container">
+    <div class="my-orders__header">
+        <h1>Pedidos</h1> <hr>
+        <input type="button" value="Carrinho de compras" (click)="modifeTypeToOrder()">
+        <input type="button" value="Pedidos Feitos" (click)="modifeTypeOrder()">
+    </div>
+
+    <div class="my-orders__content" [ngSwitch]="optionToOrders">
+        <div *ngSwitchDefault="true" class="my-orders__content__items">
+            <div class="my-orders__content__items__top">
+                <h1>Carrinho de compras</h1>
+                <input type="button" value="Comprar">
+            </div>
+            <div class="my-orders__content__items__card" *ngFor="let item of dataToOrder">
+                <img src="{{item.image}}" alt="image of {{item.order}}">
+                <h2> {{item.order}} </h2>
+                <label> R$ {{item.price}}</label>
+                <input type="button" value="Remover">
+            </div>
+        </div>
+
+        <div *ngSwitchCase="false" class="my-orders__content__items">
+            <div class="my-orders__content__items__top">
+                <h1>Pedidos feitos</h1>
+            </div>
+            <div class="my-orders__content__items__card" *ngFor="let item of dataToOrder">
+                <img src="{{item.image}}" alt="image of {{item.order}}">
+                <h2> {{item.order}} </h2>
+                <label> R$ {{item.price}}</label>
+                <input type="button" value="Remover">
+            </div>
+        </div>
+    </div>
+
+</div>

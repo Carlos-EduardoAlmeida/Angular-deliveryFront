@@ -20,13 +20,6 @@ export class CreateAccountComponent {
   ){ }
 
   async onSubmit(){
-    try{
-      const result = await this.accountService.login(this.register);
-      console.log(`Login efetuado: ${result}`);
-
-      this.router.navigate([''])
-    }catch(error){
-      console.error(error);
-    }
+    await this.accountService.createAccount(this.register);
   }
 }

@@ -1,0 +1,96 @@
+.my-orders__container{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 60px 0px;
+    .my-orders__header{
+        width: 80%;
+        padding: 20px 5px;
+        h1{
+            margin-left: 20px;
+            color: #e92f48;
+            font-weight: bold;
+            font-size: 2.5em;
+        }
+        input{
+            margin: 20px 6px 0px 0px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight:500;
+            background-color: #e92f48;
+            color: white;
+            border-radius: 5px;
+            width: 170px;
+            height: 45px;
+            &:hover{
+                background-color: #b0261a;
+            }
+        }
+    }
+    .my-orders__content{
+        margin-top: 30px;
+        width: 80%;
+        padding: 20px 40px;
+        background-color: #e0e0e0;
+        border-radius: 10px;
+        .my-orders__content__items{
+            .my-orders__content__items__top{
+                padding: 10px;
+                display: flex;
+                justify-content: space-between;
+                border-bottom: 2px solid black;
+                h1{
+                    color: #e92f48;
+                }
+                input{
+                    height: 50px;
+                    width: 150px;
+                    border-radius: 10px;
+                    background-color: #208010;
+                    color: white;
+                    border: 1px solid black;
+                    opacity: 1;
+                }
+            }
+            .my-orders__content__items__card{
+                position: relative;
+                padding: 15px 10px;
+                display: flex;
+                border-bottom: 1px solid rgb(139, 139, 139);
+                img{
+                    border-radius: 10px;
+                    width: 180px;
+                    height: 150px;
+                }
+                h2{
+                    font-weight: 600;
+                    padding: 10px 20px;
+                }
+                label{
+                    font-size: 1.1em;
+                    font-weight: 700;
+                    padding: 10px;
+                }
+                input{
+                    font-size: 1em;
+                    font-weight: 700;
+                    color: white;
+                    border-radius: 5px;
+                    background-color: #e92f48;
+                    width: 100px;
+                    height: 50px;
+                    position: absolute;
+                    align-self: center;
+                    right: 10px;
+                    &:hover{
+                        cursor: pointer;
+                        transform: scale(1.1);
+                        background-color: #b0261a;
+                    }
+                }
+            }
+        }
+    }
+}

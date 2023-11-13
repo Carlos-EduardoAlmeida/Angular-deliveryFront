@@ -7,6 +7,8 @@ import { CreateAccountComponent } from './account/create-account/create-account.
 import { authGuard } from './account/shared/auth.guard';
 import { MainHomeComponent } from './components/main-home/main-home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { OrderMenuComponent } from './components/order-menu/order-menu.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 const routes: Routes = [
   {
@@ -17,6 +19,8 @@ const routes: Routes = [
       { path: '', redirectTo: 'home' , pathMatch: 'full'},
       { path: 'home', component: MainHomeComponent},
       { path: 'profile', component: ProfileComponent},
+      { path: 'order-menu', component: OrderMenuComponent},
+      { path: 'my-orders', component: MyOrdersComponent},
     ]
     
   },

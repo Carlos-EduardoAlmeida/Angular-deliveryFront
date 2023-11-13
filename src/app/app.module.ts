@@ -11,6 +11,10 @@ import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MainHomeComponent } from './components/main-home/main-home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { OrderMenuComponent } from './components/order-menu/order-menu.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -21,12 +25,15 @@ import { ProfileComponent } from './components/profile/profile.component';
     CreateAccountComponent,
     NavBarComponent,
     MainHomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    OrderMenuComponent,
+    MyOrdersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

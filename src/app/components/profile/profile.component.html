@@ -19,22 +19,29 @@
     </div>
 
 
-    <div class="profile__address" [ngSwitch]="optionUser">
+    <div class="profile__address" [ngSwitch]="optionAddress">
         <div *ngSwitchDefault="false">
             <h1>Endereço</h1>
-            <p>CARLOS EDUARDO</p>
-            <br>
-            <p>Email: carlos-gmail.com</p>
+            <p><span>Bairro:</span> Pampalona </p>
+            <p><span>Rua:</span> testerua </p>
+            <p><span>Complemento:</span> Em frente ao posto  |  <span>Número:</span> 600</p>
+            <p><span>Localidade:</span> Feira de santana, Bh </p>
 
-            <button type="button" (click)="modifeUser()">Modificar</button>
+            <button type="button" (click)="modifeAddress()">Modificar</button>
         </div>
 
         <div *ngSwitchCase="true" class="profile__address__modife">
             <h1>Modificar Endereço</h1>
-            <input type="text" placeholder="Cep" name="cep" id="cep">
-            <input type="email" placeholder="Email" name="newEmail" id="email"> 
-            <input type="password" placeholder="Senha" name="newPassword" id="newPassword">
-            <button type="button" (click)="modifeUser()">Cancelar</button>
+            <input type="number" placeholder="Cep" name="cep" id="cep">
+            <button type="button">Buscar endereço</button>
+            <div class="profile__address__modife__forms">
+                <input type="text" placeholder="Bairro" name="bairro" id="bairro">
+                <input type="text" placeholder="Rua" name="logradouro" id="logradouro">
+                <input type="number" placeholder="Número" name="numero" id="numero">
+                <input type="text" placeholder="Cidade" name="localidade" id="localidade">
+                <input type="email" placeholder="Complemento" name="complemento" id="complemento"> 
+            </div>
+            <button type="button" (click)="modifeAddress()">Cancelar</button>
         </div>
     </div>
 </div>
