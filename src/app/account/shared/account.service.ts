@@ -1,12 +1,11 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl: string = "https://deliveryapi-ewcv.onrender.com";
+  private apiUrl: string = "http://localhost:8080";
 
   constructor(private http: HttpClient) { }
 
@@ -28,13 +27,13 @@ export class AccountService {
     var response;
     return this.http.post(this.apiUrl, newUser).subscribe({
       next(data){
-        response = JSON.parse(JSON.stringify(data)); // erro no retorno da API, precisava mudar para JSON
+        response = JSON.parse(JSON.stringify(data));
         console.log(response);
-        /*window.localStorage.setItem('token', response.id); //VAI USAR AINDA
-        console.log(`Login efetuado: ${response.id}`);*/
+        window.localStorage.setItem('token', response.id);
+        console.log(`Cadastro efetuado: ${response.id}`);
       },
       error(err) {
-          console.error(err)
+          console.error(err);
       },
     })
   }

@@ -1,47 +1,56 @@
 <div class="profile__container">
     <div class="profile__user" [ngSwitch]="optionUser">
-        <div *ngSwitchDefault="false">
+        <div class="profile__user__normal" *ngSwitchDefault="false">
             <h1>Usuário</h1>
-            <p>CARLOS EDUARDO</p>
+            <p>{{user.name}}</p>
             <br>
-            <p>Email: carlos-gmail.com</p>
+            <p>Email: {{user.email}}</p>
 
-            <button type="button" (click)="modifeUser()">Modificar</button>
+            <div>
+                <button type="button" (click)="modifeUserScreen()">Modificar</button>
+                <img src="https://cdn-icons-png.flaticon.com/512/3625/3625005.png" (click)="deleteUser()" height="50px" alt="botão de excluir">
+            </div>
         </div>
 
-        <div *ngSwitchCase="true" class="profile__user__modife">
+        <form *ngSwitchCase="true" class="profile__user__modife" (ngSubmit)="updateUser()" [formGroup]="userForm" #formDir="ngForm">
             <h1>Modificar Usuário</h1>
-            <input type="text" placeholder="Nome" name="newName" id="name">
-            <input type="email" placeholder="Email" name="newEmail" id="email"> 
-            <input type="password" placeholder="Senha" name="newPassword" id="newPassword">
-            <button type="button" (click)="modifeUser()">Cancelar</button>
-        </div>
+            <input type="text" placeholder="Nome" id="name" formControlName="name">
+            <p class="alert-required" *ngIf="user.invalid && email.invalid && password.invalid && formDir.submitted"> Você deve preencher no mínimo um campo </p>
+            <input type="email" placeholder="Email" id="email" formControlName="email"> 
+            <input type="password" placeholder="Senha" id="password" formControlName="password">
+            <button type="submit">Atualizar</button>
+            <button type="button" (click)="modifeUserScreen()">Cancelar</button>
+        </form>
     </div>
 
 
     <div class="profile__address" [ngSwitch]="optionAddress">
         <div *ngSwitchDefault="false">
             <h1>Endereço</h1>
-            <p><span>Bairro:</span> Pampalona </p>
-            <p><span>Rua:</span> testerua </p>
-            <p><span>Complemento:</span> Em frente ao posto  |  <span>Número:</span> 600</p>
-            <p><span>Localidade:</span> Feira de santana, Bh </p>
+            <p><span>Bairro:</span> {{address.bairro}} </p>
+            <p><span>Rua:</span> {{address.logradouro}} </p>
+            <p><span>Complemento:</span> {{address.complemento}}  |  <span>Número:</span> {{address.numero}}</p>
+            <p><span>Localidade:</span> {{address.localidade}}   |  <span>Estado:</span> {{address.uf}} </p>
 
-            <button type="button" (click)="modifeAddress()">Modificar</button>
-        </div>
-
-        <div *ngSwitchCase="true" class="profile__address__modife">
-            <h1>Modificar Endereço</h1>
-            <input type="number" placeholder="Cep" name="cep" id="cep">
-            <button type="button">Buscar endereço</button>
-            <div class="profile__address__modife__forms">
-                <input type="text" placeholder="Bairro" name="bairro" id="bairro">
-                <input type="text" placeholder="Rua" name="logradouro" id="logradouro">
-                <input type="number" placeholder="Número" name="numero" id="numero">
-                <input type="text" placeholder="Cidade" name="localidade" id="localidade">
-                <input type="email" placeholder="Complemento" name="complemento" id="complemento"> 
+            <div>
+                <button type="button" (click)="modifeAddressScreen()">Adicionar</button>
+                <img src="https://cdn-icons-png.flaticon.com/512/3625/3625005.png" (click)="deleteAddress()" height="50px" alt="botão de excluir">
             </div>
-            <button type="button" (click)="modifeAddress()">Cancelar</button>
         </div>
+
+        <form *ngSwitchCase="true" class="profile__address__modife" (ngSubmit)="createAddress()" [formGroup]="addressForm" #formDir="ngForm">
+            <h1>Modificar Endereço</h1>
+            <input type="text" placeholder="Cep" name="cep" id="cep" formControlName="cep">
+            <button type="button" (click)="searchCep(addressForm.value.cep)">Buscar endereço</button>
+            <div class="profile__address__modife__forms">
+                <input type="text" placeholder="Bairro" name="bairro" id="bairro" formControlName="bairro">
+                <input type="text" placeholder="Rua" name="logradouro" id="logradouro" formControlName="logradouro">
+                <input type="number" placeholder="Número" name="numero" id="numero" formControlName="numero">
+                <input type="text" placeholder="Cidade" name="localidade" id="localidade" formControlName="localidade">
+                <input type="email" placeholder="Complemento" name="complemento" id="complemento" formControlName="complemento"> 
+            </div>
+            <button type="submit">Adicionar endereço</button>
+            <button type="button" (click)="modifeAddressScreen()">Cancelar</button>
+        </form>
     </div>
 </div>

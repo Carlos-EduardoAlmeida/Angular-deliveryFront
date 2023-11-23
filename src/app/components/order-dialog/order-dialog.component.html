@@ -1,0 +1,15 @@
+<div class="order-dialog__container">
+  <h1 mat-dialog-title>{{order[data.id-1].order}}</h1>
+  <mat-dialog-content class="mat-typography">
+    <img src="{{order[data.id-1].image}}" alt="Imagem do produto {{order[data.id-1].order}}">
+
+    <p>
+      {{order[data.id-1].description}}
+    </p>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close class="close">Cancelar</button>
+    <button mat-button [mat-dialog-close]="true" cdkFocusInitial (click)="add()" class="add">Adicionar ao carrinho</button>
+  </mat-dialog-actions>
+</div>
+

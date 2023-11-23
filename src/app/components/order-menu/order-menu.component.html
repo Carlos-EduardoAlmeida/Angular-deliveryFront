@@ -1,5 +1,5 @@
 <div class="order-menu__container">
-    <div class="order-menu__card" *ngFor="let item of ordersMenu">
+    <div class="order-menu__card" *ngFor="let item of ordersMenu" (click)="openModal(item.id)">
         <div class="order-menu__card__visual">
             <img src="{{item.image}}" alt="image of {{item.order}}">
             <label>{{item.order}}</label>

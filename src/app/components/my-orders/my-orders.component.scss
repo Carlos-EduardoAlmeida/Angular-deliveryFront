@@ -45,13 +45,20 @@
                     color: #e92f48;
                 }
                 input{
+                    font-size: 1.1em;
+                    font-weight: bold;
                     height: 50px;
                     width: 150px;
                     border-radius: 10px;
-                    background-color: #208010;
+                    background-color: #278816;
                     color: white;
                     border: 1px solid black;
                     opacity: 1;
+                    &:hover{
+                        cursor: pointer;
+                        transform: scale(1.1);
+                        background-color: #1d810b;
+                    }
                 }
             }
             .my-orders__content__items__card{
@@ -64,7 +71,7 @@
                     width: 180px;
                     height: 150px;
                 }
-                h2{
+                div{
                     font-weight: 600;
                     padding: 10px 20px;
                 }

@@ -7,14 +7,16 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthenticationComponent } from './pages/authentication/authentication.component';
 import { LoginComponent } from './account/login/login.component';
 import { CreateAccountComponent } from './account/create-account/create-account.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MainHomeComponent } from './components/main-home/main-home.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderMenuComponent } from './components/order-menu/order-menu.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { HttpClientModule } from '@angular/common/http';
+import { OrderDialogComponent } from './components/order-dialog/order-dialog.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +29,16 @@ import { HttpClientModule } from '@angular/common/http';
     MainHomeComponent,
     ProfileComponent,
     OrderMenuComponent,
-    MyOrdersComponent
+    MyOrdersComponent,
+    OrderDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

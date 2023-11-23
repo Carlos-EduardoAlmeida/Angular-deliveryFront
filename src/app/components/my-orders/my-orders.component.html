@@ -9,13 +9,17 @@
         <div *ngSwitchDefault="true" class="my-orders__content__items">
             <div class="my-orders__content__items__top">
                 <h1>Carrinho de compras</h1>
-                <input type="button" value="Comprar">
+                <input type="button" value="Comprar" (click)="purchase()">
             </div>
-            <div class="my-orders__content__items__card" *ngFor="let item of dataToOrder">
-                <img src="{{item.image}}" alt="image of {{item.order}}">
-                <h2> {{item.order}} </h2>
+            <div class="my-orders__content__items__card" *ngFor="let item of shoppingCart">
+                <img src="{{item.image}}" alt="image of {{item.orders}}">
+                <div>
+                    <h2> {{item.orders}} </h2>
+                    <h3>Quantidade: {{item.quantity}}</h3>
+                </div>
+                
                 <label> R$ {{item.price}}</label>
-                <input type="button" value="Remover">
+                <input type="button" value="Remover" (click)="remove(item)">
             </div>
         </div>
 
@@ -23,11 +27,19 @@
             <div class="my-orders__content__items__top">
                 <h1>Pedidos feitos</h1>
             </div>
-            <div class="my-orders__content__items__card" *ngFor="let item of dataToOrder">
+            <div class="my-orders__content__items__card" *ngFor="let item of dataOrderPlaced">
                 <img src="{{item.image}}" alt="image of {{item.order}}">
-                <h2> {{item.order}} </h2>
+                <div>
+                    <h2> {{item.orders}} </h2>
+                    <h3>Quantidade: {{item.quantity}}</h3>
+                </div>
                 <label> R$ {{item.price}}</label>
-                <input type="button" value="Remover">
+
+                <div>
+                    <label> PEDIDO À CAMINHO</label>
+                    <input type="button" value="Pedido Entregue" (click)="removeFromApi(item.id)">
+                </div>
+                
             </div>
         </div>
     </div>
