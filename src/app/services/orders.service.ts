@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class OrdersService {
-  private apiUrl: string = "http://localhost:8080/orders";
+  private apiUrl: string = "https://deliveryapi-ewcv.onrender.com/orders";
 
   constructor(
     private http: HttpClient

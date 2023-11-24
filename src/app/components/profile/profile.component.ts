@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
 import { UserService } from 'src/app/services/user.service';
+import { GeralDialogComponent } from '../geral-dialog/geral-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -31,6 +33,7 @@ export class ProfileComponent implements OnInit{
   addressForm!: FormGroup
 
   constructor(
+    public dialog: MatDialog,
     private router: Router,
     private addressService: AddressService,
     private userService: UserService,
@@ -188,6 +191,21 @@ export class ProfileComponent implements OnInit{
       },
       complete: () => {
         this.findAddress();
+      }
+    })
+  }
+  
+  openModal(text: string, func: string): void {
+    console.log("dialogo de exclusão aberto")
+    const dialogRef = this.dialog.open(GeralDialogComponent, {
+      data: { text: text },
+    })
+    dialogRef.afterClosed().subscribe({
+      next: data => {
+        if(data && func=='deleteUser')
+          this.deleteUser();
+        else if(data && func=='deleteAddress')
+          this.deleteAddress();
       }
     })
   }

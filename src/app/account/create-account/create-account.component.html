@@ -11,11 +11,16 @@
         <h1>Cadastre-se</h1>
     </div>
 
-    <div class="register__form">
-        <input type="text" placeholder="Nome Completo" [(ngModel)]="register.name" required />
-        <input type="text" placeholder="Email" [(ngModel)]="register.email" required />
-        <input type="password" placeholder="Password" [(ngModel)]="register.password" required />
+    <form class="register__form" [formGroup]="createAccountForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="Nome Completo" formControlName="name" />
+        <p class="alert-required" *ngIf="name.errors?.['required'] && formDir.submitted"> Você deve preencher o seu nome</p>
+        <input type="email" placeholder="Email" id="email" formControlName="email"/>
+        <p class="alert-required" *ngIf="email.errors?.['required'] && formDir.submitted"> Você deve preencher o email</p>
+        <p class="alert-required" *ngIf="email.errors?.['email'] && formDir.submitted"> Formato do email errado</p>
+        <input type="password" placeholder="Password" id="password" formControlName="password" />
+        <p class="alert-required" *ngIf="password.errors?.['required'] && formDir.submitted"> Você deve preencher o campo senha</p>
+        <p class="alert-required" *ngIf="password.errors?.['minlength'] && formDir.submitted"> Deve haver no mínimo 6 caracteres</p>
 
-        <button type="button" (click)="onSubmit()">Cadastrar</button>
-    </div>
+        <button type="button" type="submit">Entrar</button>
+    </form>
 </div>

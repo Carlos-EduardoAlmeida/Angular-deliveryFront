@@ -19,9 +19,9 @@ export class OrderMenuComponent {
     const dialogRef = this.dialog.open(OrderDialogComponent, {
       data: { id: id },
     })
-  dialogRef.afterClosed().subscribe(result => {
-    console.log('closed')
-  })
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('closed')
+    })
   }
   
 }

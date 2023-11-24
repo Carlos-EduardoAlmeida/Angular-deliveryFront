@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AccountService {
-  private apiUrl: string = "http://localhost:8080";
+  private apiUrl: string = "https://deliveryapi-ewcv.onrender.com";
 
   constructor(private http: HttpClient) { }
 

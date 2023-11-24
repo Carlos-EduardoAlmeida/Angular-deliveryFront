@@ -15,8 +15,16 @@ import { OrderMenuComponent } from './components/order-menu/order-menu.component
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import {MatDialogModule} from '@angular/material/dialog';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { OrderDialogComponent } from './components/order-dialog/order-dialog.component';
+import { GeralDialogComponent } from './components/geral-dialog/geral-dialog.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { LoadingComponent } from './components/loading/loading.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+
+const MODULES = [
+  MatProgressSpinnerModule,
+]
 
 @NgModule({
   declarations: [
@@ -30,7 +38,9 @@ import { OrderDialogComponent } from './components/order-dialog/order-dialog.com
     ProfileComponent,
     OrderMenuComponent,
     MyOrdersComponent,
-    OrderDialogComponent
+    OrderDialogComponent,
+    GeralDialogComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +49,16 @@ import { OrderDialogComponent } from './components/order-dialog/order-dialog.com
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
+    MODULES,
   ],
-  providers: [],
+  exports: [MODULES, LoadingComponent],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

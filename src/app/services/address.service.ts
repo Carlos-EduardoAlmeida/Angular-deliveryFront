@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AddressService {
-  private apiUrl: string = "http://localhost:8080/address";
+  private apiUrl: string = "https://deliveryapi-ewcv.onrender.com/address";
 
   constructor(private http: HttpClient) { }
 

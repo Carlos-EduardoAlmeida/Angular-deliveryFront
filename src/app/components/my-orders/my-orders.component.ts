@@ -32,7 +32,11 @@ export class MyOrdersComponent {
         id: localStorage.getItem('token')
       }).subscribe({
         next: data => {
-          console.log(data);
+          if(data != null){
+            this.shoppingCart = []
+            localStorage.removeItem('shoppingCart')
+            console.log('teste')
+          }
         }
       })
     })

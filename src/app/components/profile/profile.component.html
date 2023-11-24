@@ -2,13 +2,13 @@
     <div class="profile__user" [ngSwitch]="optionUser">
         <div class="profile__user__normal" *ngSwitchDefault="false">
             <h1>Usuário</h1>
-            <p>{{user.name}}</p>
+            <p><span>Usuário:</span>{{user.name}}</p>
             <br>
-            <p>Email: {{user.email}}</p>
+            <p><span>Email:</span> {{user.email}}</p>
 
             <div>
                 <button type="button" (click)="modifeUserScreen()">Modificar</button>
-                <img src="https://cdn-icons-png.flaticon.com/512/3625/3625005.png" (click)="deleteUser()" height="50px" alt="botão de excluir">
+                <img src="https://cdn-icons-png.flaticon.com/512/3625/3625005.png" (click)="openModal('Tem certeza que deseja mesmo deletar o Usuário?', 'deleteUser')" height="50px" alt="botão de excluir">
             </div>
         </div>
 
@@ -34,7 +34,7 @@
 
             <div>
                 <button type="button" (click)="modifeAddressScreen()">Adicionar</button>
-                <img src="https://cdn-icons-png.flaticon.com/512/3625/3625005.png" (click)="deleteAddress()" height="50px" alt="botão de excluir">
+                <img src="https://cdn-icons-png.flaticon.com/512/3625/3625005.png" (click)="openModal('Tem certeza que deseja mesmo deletar o Endereço?', 'deleteAddress')" height="50px" alt="botão de excluir">
             </div>
         </div>
 

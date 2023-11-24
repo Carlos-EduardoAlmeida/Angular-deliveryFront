@@ -1,0 +1,11 @@
+<div class="order-dialog__container">
+    <mat-dialog-content class="mat-typography">
+        <p>
+        {{data.text}}
+        </p>
+    </mat-dialog-content>
+    <mat-dialog-actions align="end">
+        <button mat-button mat-dialog-close class="close">Cancelar</button>
+        <button mat-button [mat-dialog-close]="true" cdkFocusInitial class="add">Sim, tenho certeza</button>
+    </mat-dialog-actions>
+</div>

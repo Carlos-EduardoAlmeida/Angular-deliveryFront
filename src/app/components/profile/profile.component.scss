@@ -59,12 +59,16 @@
             div{
                 @include stylusDivBotton();
             }
+            span{
+                color: #e92f48;
+                font-size: 1.3em;
+                font-weight: bold;
+            }
             button{
                 margin-top: 15px;
                 justify-content: center;
                 align-items: center;
                 cursor: pointer;
-    
                 background-color: #e92f48;
                 color: white;
                 border-radius: 10px;

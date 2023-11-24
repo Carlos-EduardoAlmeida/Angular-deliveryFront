@@ -11,10 +11,14 @@
         <h1>Login</h1>
     </div>
 
-    <div class="login__form">
-        <input type="email" placeholder="Email" [(ngModel)]="login.email" required />
-        <input type="password" placeholder="Password" [(ngModel)]="login.password" required />
+    <form class="login__form" [formGroup]="loginForm" #formDir="ngForm" (ngSubmit)="onSubmit()">
+        <input type="email" placeholder="Email" id="email" formControlName="email"/>
+        <p class="alert-required" *ngIf="email.errors?.['required'] && formDir.submitted"> Você deve preencher o email</p>
+        <p class="alert-required" *ngIf="email.errors?.['email'] && formDir.submitted"> Formato do email errado</p>
+        <input type="password" placeholder="Password" id="password" formControlName="password" />
+        <p class="alert-required" *ngIf="password.errors?.['required'] && formDir.submitted"> Você deve preencher o campo senha</p>
+        <p class="alert-required" *ngIf="password.errors?.['minlength'] && formDir.submitted"> Deve haver no mínimo 6 caracteres</p>
 
-        <button type="button" (click)="onSubmit()">Entrar</button>
-    </div>
+        <button type="button" type="submit">Entrar</button>
+    </form>
 </div>
