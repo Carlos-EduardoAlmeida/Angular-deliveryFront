@@ -22,10 +22,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
-const MODULES = [
-  MatProgressSpinnerModule,
-]
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,9 +45,9 @@ const MODULES = [
     ReactiveFormsModule,
     HttpClientModule,
     MatDialogModule,
-    MODULES,
+    MatProgressSpinnerModule,
   ],
-  exports: [MODULES, LoadingComponent],
+  exports: [LoadingComponent],
   providers: [
     {
       provide: HTTP_INTERCEPTORS,
