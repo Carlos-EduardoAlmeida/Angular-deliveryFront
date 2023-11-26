@@ -1,0 +1,21 @@
+.order-dialog__container{
+    padding: 20px 20px 20px 20px;
+    border-radius: 15px;
+    mat-dialog-content{
+        p{
+            font-size: 1.2em;
+        }
+        
+    }
+    mat-dialog-actions{
+        button{
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 10px;
+            background-color: #c95252;
+            margin-top: 10px;
+            margin-left: 5px;
+            color: white;
+        }
+    }
+}

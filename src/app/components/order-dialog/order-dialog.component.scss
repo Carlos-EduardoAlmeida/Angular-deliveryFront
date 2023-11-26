@@ -1,8 +1,14 @@
 .order-dialog__container{
     width: 400px;
     height: 500px;
-    
-    
+    @media screen and (max-width:600px){
+        width: 320px;
+        height: auto;
+    }
+    @media screen and (max-width:400px){
+        width: 280px;
+        height: auto;
+    }
     mat-dialog-content{
         display: flex;
         align-items: center;
@@ -13,6 +19,10 @@
             width: 300px;
             height: 280px;
             margin-bottom: 10px;
+            @media screen and (max-width:600px){
+                width: 200px;
+                height: 170px;
+            }
         }
     }
     mat-dialog-actions{
@@ -32,6 +42,12 @@
             height: 45px;
             &:hover{
                 transform: scale(1.1);
+            }
+            @media screen and (max-width:600px){
+                font-size: 1em;
+                margin-left: 0px;
+                width: 100px;
+                height: 38px;
             }
         }
     }

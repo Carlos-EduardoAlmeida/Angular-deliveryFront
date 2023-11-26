@@ -11,12 +11,41 @@
     border-radius: 30px;
     padding: 25px 50px;
 
+    @media screen and (min-width:1500px){
+        width: 800px;
+    }
+    @media screen and (max-width:550px){
+        width: 450px;
+    }
+    @media screen and (max-width:450px){
+        width: 380px;
+        padding: 25px 20px;
+    }
+    @media screen and (max-width:400px){
+        width: 350px;
+    }
     .login__top{
         .login__top__header{
             @include flexstylus();
             justify-content: space-between;
         }
+        @media screen and (max-width:450px){
+            padding: 5px 15px;
+            h4{
+                font-size: 0.9em;
+            }
+            div{
+                h4{
+                    font-size: 0.9em;
+                    margin-bottom: 0px;
+                }
+                a{
+                    font-size: 0.9em;
+                }
+            }
+        }
         h1{
+            font-size: 1.5em;
             @include flexstylus();
             margin: 15px 0px 50px 0px; 
         }
@@ -52,6 +81,20 @@
             height: 50px;
             &:hover{
                 background-color: #b0261a;
+            }
+        }
+        @media screen and (max-width:550px){
+            input{
+                width: 100%;
+            }
+        }
+        @media screen and (min-width:1500px){
+            input{
+                padding: 18px 12px;
+            }
+            button{
+                width: 230px;
+                height: 65px;
             }
         }
     }

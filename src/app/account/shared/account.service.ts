@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MessageDialogComponent } from 'src/app/components/message-dialog/message-dialog.component';
 
 @Injectable({
   providedIn: 'root'
@@ -7,18 +9,25 @@ import { Injectable } from '@angular/core';
 export class AccountService {
   private apiUrl: string = "https://deliveryapi-ewcv.onrender.com";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private dialog: MatDialog) { }
 
   login(user: any) {
     var response;
     return this.http.post(`${this.apiUrl}/login`, user).subscribe({
-      next(data){
+      next: (data) => {
         response = JSON.parse(JSON.stringify(data));
         window.localStorage.setItem('token', response.id);
         console.log(`Login efetuado: ${response.id}`);
       },
-      error(err) {
-          console.error(err)
+      error: (err) => {
+        console.error(err);
+        if(err.status == 404){
+          console.log("dialogo de aviso aberto")
+          const dialogRef = this.dialog.open(MessageDialogComponent, {
+            data: { text: 'Email ou usuário incorreto, verifique novamente' },
+          })
+          dialogRef.afterClosed().subscribe()
+        }
       },
     })
   }
@@ -26,14 +35,21 @@ export class AccountService {
   createAccount(newUser: any){
     var response;
     return this.http.post(this.apiUrl, newUser).subscribe({
-      next(data){
+      next: (data)=> {
         response = JSON.parse(JSON.stringify(data));
         console.log(response);
         window.localStorage.setItem('token', response.id);
         console.log(`Cadastro efetuado: ${response.id}`);
       },
-      error(err) {
+      error: (err) => {
           console.error(err);
+          if(err.status == 400){
+            console.log("dialogo de aviso aberto")
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              data: { text: 'Esse email já está cadastrado' },
+            })
+            dialogRef.afterClosed().subscribe()
+          }
       },
     })
   }

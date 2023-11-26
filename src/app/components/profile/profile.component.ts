@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { AddressService } from 'src/app/services/address.service';
 import { UserService } from 'src/app/services/user.service';
 import { GeralDialogComponent } from '../geral-dialog/geral-dialog.component';
+import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
 @Component({
   selector: 'app-profile',
@@ -46,20 +47,20 @@ export class ProfileComponent implements OnInit{
     this.findUser();
 
     this.userForm = new FormGroup({
-      name: new FormControl(''),
-      email: new FormControl(''),
-      password: new FormControl(''),
+      name: new FormControl('', [Validators.required]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       id: new FormControl(window.localStorage.getItem('token'))
     })
     this.addressForm = new FormGroup({
       userId: new FormControl(window.localStorage.getItem('token')),
-      cep: new FormControl(''),
-      numero: new FormControl(''),
-      logradouro: new FormControl(''),
+      cep: new FormControl('', [Validators.required]),
+      numero: new FormControl('', [Validators.required]),
+      logradouro: new FormControl('', [Validators.required]),
       complemento: new FormControl(''),
-      bairro: new FormControl(''),
-      localidade: new FormControl(''),
-      uf: new FormControl(''),
+      bairro: new FormControl('', [Validators.required]),
+      localidade: new FormControl('', [Validators.required]),
+      uf: new FormControl('', [Validators.required]),
     })
   }
 
@@ -74,30 +75,31 @@ export class ProfileComponent implements OnInit{
   get password():any {
     return this.userForm.get('password');
   }
+  
 
   get cep():any {
-    return this.userForm.get('cep');
+    return this.addressForm.get('cep');
   }
 
   get numero():any {
-    return this.userForm.get('numero');
+    return this.addressForm.get('numero');
   }
 
   get logradouro():any {
-    return this.userForm.get('logradouro');
+    return this.addressForm.get('logradouro');
   }
   
   get complemento():any {
-    return this.userForm.get('complemento');
+    return this.addressForm.get('complemento');
   }
   get bairro():any {
-    return this.userForm.get('bairro');
+    return this.addressForm.get('bairro');
   }
   get localidade():any {
-    return this.userForm.get('localidade');
+    return this.addressForm.get('localidade');
   }
   get uf():any {
-    return this.userForm.get('uf');
+    return this.addressForm.get('uf');
   }
 
 
@@ -108,20 +110,46 @@ export class ProfileComponent implements OnInit{
   }
 
   updateUser(): void{
-    this.userService.updateUser(this.userForm.value).subscribe({
-      next:(data) => {
-        this.user = data;
-        this.modifeUserScreen()
-      }, error: (err) => {
-        console.log(err)
-      }
-    })
+    if(!this.userForm.invalid){
+      this.userService.updateUser(this.userForm.value).subscribe({
+        next:(data) => {
+          this.user = data;
+          this.modifeUserScreen()
+        }, error: (err) => {
+          console.log(err);
+          if(err.status == 500){
+            console.log("dialogo de exclusão aberto")
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              data: { text: 'Conexão com servidor perdida, aguarde ou retorne em outro momento' },
+            })
+            dialogRef.afterClosed().subscribe();
+          }else if(err.status == 404){
+            console.log("dialogo de exclusão aberto")
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              data: { text: 'Esse email já está cadastrado, por favor insira outro' },
+            })
+            dialogRef.afterClosed().subscribe();
+          }
+          
+        }
+      })
+    }
   }
 
   deleteUser(): void{
-    this.userService.deleteUser().subscribe(data =>{
-      window.localStorage.removeItem('token');
-      this.router.navigate(['/login']);
+    this.userService.deleteUser().subscribe({
+      next: () => {
+        window.localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      }, error: (err) => {
+        if(err.status == 500){
+          console.log("dialogo de exclusão aberto")
+          const dialogRef = this.dialog.open(MessageDialogComponent, {
+            data: { text: 'Conexão com servidor perdida, aguarde ou retorne em outro momento' },
+          })
+          dialogRef.afterClosed().subscribe();
+        }
+      }
     })
   }
 
@@ -143,21 +171,10 @@ export class ProfileComponent implements OnInit{
           this.address = address;
         }else
           this.address = data;
-        
-        
-        
       }, error: (err) => {
         console.log(err)
       }
     })
-      
-      
-      /*data =>{
-      this.address = data;
-      if(this.address.cep == null){
-        console.log('é nulo')
-      }
-    })*/
   }
 
   searchCep(cep: string): void {
@@ -173,15 +190,17 @@ export class ProfileComponent implements OnInit{
   }
 
   createAddress(): void {
-    this.addressService.createAddress(this.addressForm.value).subscribe({
-      next: data => {
-        console.log(data)
-        this.address = data
-        this.modifeAddressScreen();
-      }, error(err) {
-        console.error(err)
-      }
-    })
+    if(!this.addressForm.invalid){
+      this.addressService.createAddress(this.addressForm.value).subscribe({
+        next: data => {
+          console.log(data)
+          this.address = data
+          this.modifeAddressScreen();
+        }, error(err) {
+          console.error(err)
+        }
+      })
+    }
   }
 
   deleteAddress(): void {

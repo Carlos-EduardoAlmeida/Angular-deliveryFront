@@ -21,6 +21,7 @@ import { GeralDialogComponent } from './components/geral-dialog/geral-dialog.com
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LoadingComponent } from './components/loading/loading.component';
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { MessageDialogComponent } from './components/message-dialog/message-dialog.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     OrderDialogComponent,
     GeralDialogComponent,
     LoadingComponent,
+    MessageDialogComponent,
   ],
   imports: [
     BrowserModule,

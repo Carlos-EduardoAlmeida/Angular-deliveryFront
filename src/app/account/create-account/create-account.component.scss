@@ -11,14 +11,43 @@
     border-radius: 30px;
     padding: 25px 50px;
 
+    @media screen and (min-width:1500px){
+        width: 800px;
+    }
+    @media screen and (max-width:550px){
+        width: 450px;
+    }
+    @media screen and (max-width:450px){
+        width: 380px;
+        padding: 25px 20px;
+    }
+    @media screen and (max-width:400px){
+        width: 350px;
+    }
     .register__top{
         .register__top__header{
             @include flexstylus();
             justify-content: space-between;
         }
         h1{
+            font-size: 1.5em;
             @include flexstylus();
             margin: 15px 0px 50px 0px; 
+        }
+        @media screen and (max-width:430px){
+            padding: 5px 15px;
+            h4{
+                font-size: 0.9em;
+            }
+            div{
+                h4{
+                    font-size: 0.9em;
+                    margin-bottom: 0px;
+                }
+                a{
+                    font-size: 0.9em;
+                }
+            }
         }
     }
     .register__form{

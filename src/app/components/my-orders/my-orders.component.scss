@@ -6,6 +6,9 @@
     .my-orders__header{
         width: 80%;
         padding: 20px 5px;
+        @media screen and (max-width:500px){
+            width: 95%;
+        }
         h1{
             margin-left: 20px;
             color: #e92f48;
@@ -27,6 +30,11 @@
             &:hover{
                 background-color: #b0261a;
             }
+            @media screen and (max-width:500px){
+                width: 150px;
+                height: 40px;
+                margin: 10px 3px 0px 0px;
+            }
         }
     }
     .my-orders__content{
@@ -35,6 +43,10 @@
         padding: 20px 40px;
         background-color: #e0e0e0;
         border-radius: 10px;
+        @media screen and (max-width:500px){
+            width: 95%;
+            padding: 15px 20px;
+        }
         .my-orders__content__items{
             .my-orders__content__items__top{
                 padding: 10px;
@@ -66,19 +78,49 @@
                 padding: 15px 10px;
                 display: flex;
                 border-bottom: 1px solid rgb(139, 139, 139);
+                @media screen and (max-width:680px){
+                    padding: 7px 4px;
+                }
                 img{
                     border-radius: 10px;
                     width: 180px;
                     height: 150px;
+                    @media screen and (max-width:680px){
+                        width: 150px;
+                        height: 120px;
+                    }
                 }
                 div{
                     font-weight: 600;
                     padding: 10px 20px;
+                    @media screen and (max-width:680px){
+                        padding: 10px 10px;
+                        h2{
+                            font-size: 1.4em;
+                        }
+                        h3{
+                            font-size: 1.1em;
+                            margin-top: -15px;
+                        }
+                    }
+                    @media screen and (max-width:680px){
+                        h2{
+                            font-size: 1.3em;
+                        }
+                        h3{
+                            font-size: 1em;
+                            margin-top: -15px;
+                        }
+                    }
                 }
                 label{
                     font-size: 1.1em;
                     font-weight: 700;
                     padding: 10px;
+                    @media screen and (max-width:500px){
+                        margin-left: -10px;
+                    }
+                    
                 }
                 input{
                     font-size: 1em;
@@ -86,7 +128,7 @@
                     color: white;
                     border-radius: 5px;
                     background-color: #e92f48;
-                    width: 100px;
+                    width: 130px;
                     height: 50px;
                     position: absolute;
                     align-self: center;
@@ -95,6 +137,12 @@
                         cursor: pointer;
                         transform: scale(1.1);
                         background-color: #b0261a;
+                    }
+                    @media screen and (max-width:680px){
+                        width: 100px;
+                        height: 35px;
+                        right: 1px;
+                        bottom: 8px;
                     }
                 }
             }

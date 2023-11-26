@@ -19,6 +19,10 @@
         }
     }
 }
+.alert-required{
+    color: red;
+    font-size: 0.8em;
+}
 .profile__container{
     padding: 60px 0px 0px 0px;
     @include flexstylus();
@@ -27,6 +31,12 @@
         width: 60%;
         padding-bottom: 30px;
         border-bottom: 3px solid black;
+        @media screen and (max-width:800px){
+            width: 80%;
+        }
+        @media screen and (max-width:400px){
+            width: 90%;
+        }
         .profile__user__modife{
             input{
                 margin-top: 10px;
@@ -47,11 +57,6 @@
             width: 100%;
             display: flex;
             flex-direction: column;
-            .alert-required{
-                color: red;
-                font-size: 0.8em;
-                justify-self: start;
-            }
             h1{
                 color: #e92f48;
                 margin: 30px 0px 20px 0px;
@@ -85,6 +90,12 @@
         width: 60%;
         margin-bottom: 30px;
         @include flexstylus();
+        @media screen and (max-width:800px){
+            width: 80%;
+        }
+        @media screen and (max-width:400px){
+            width: 90%;
+        }
         .profile__address__modife{
             input{
                 margin-top: 10px;

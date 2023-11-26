@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { OrdersService } from 'src/app/services/orders.service';
+import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
 
 @Component({
   selector: 'app-my-orders',
@@ -13,6 +15,7 @@ export class MyOrdersComponent {
   dataOrderPlaced: any = []
 
   constructor(
+    private dialog: MatDialog,
     private ordersService: OrdersService
   ){
     if(localStorage.getItem('shoppingCart') != null){
@@ -35,7 +38,11 @@ export class MyOrdersComponent {
           if(data != null){
             this.shoppingCart = []
             localStorage.removeItem('shoppingCart')
-            console.log('teste')
+            console.log("dialogo de aviso aberto")
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              data: { text: 'Pedido(s) feito(s), você pode vê-lo(s) em "Pedidos feitos"' },
+            })
+            dialogRef.afterClosed().subscribe()
           }
         }
       })
@@ -56,7 +63,11 @@ export class MyOrdersComponent {
     this.ordersService.removeFromApi(id).subscribe({
       next: () => {
         this.searchOrders();
-        console.log('deletado');
+        console.log("dialogo de aviso aberto")
+        const dialogRef = this.dialog.open(MessageDialogComponent, {
+          data: { text: 'Pedido sinalizado como entregue, agradecemos a preferência' },
+        })
+        dialogRef.afterClosed().subscribe()
       }
     });
   }

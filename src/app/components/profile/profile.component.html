@@ -15,9 +15,13 @@
         <form *ngSwitchCase="true" class="profile__user__modife" (ngSubmit)="updateUser()" [formGroup]="userForm" #formDir="ngForm">
             <h1>Modificar Usuário</h1>
             <input type="text" placeholder="Nome" id="name" formControlName="name">
-            <p class="alert-required" *ngIf="user.invalid && email.invalid && password.invalid && formDir.submitted"> Você deve preencher no mínimo um campo </p>
+            <p class="alert-required" *ngIf="name.errors?.['required'] && formDir.submitted"> Você deve preencher o nome</p>
             <input type="email" placeholder="Email" id="email" formControlName="email"> 
+            <p class="alert-required" *ngIf="email.errors?.['email'] && formDir.submitted"> Formato de email errado</p>
+            <p class="alert-required" *ngIf="email.errors?.['required'] && formDir.submitted"> Você deve preencher o email</p>
             <input type="password" placeholder="Senha" id="password" formControlName="password">
+            <p class="alert-required" *ngIf="password.errors?.['required'] && formDir.submitted"> Você deve preencher o campo senha</p>
+            <p class="alert-required" *ngIf="password.errors?.['minlength'] && formDir.submitted"> Deve haver no mínimo 6 caracteres</p>
             <button type="submit">Atualizar</button>
             <button type="button" (click)="modifeUserScreen()">Cancelar</button>
         </form>
@@ -49,6 +53,7 @@
                 <input type="text" placeholder="Cidade" name="localidade" id="localidade" formControlName="localidade">
                 <input type="email" placeholder="Complemento" name="complemento" id="complemento" formControlName="complemento"> 
             </div>
+            <p class="alert-required" *ngIf="(cep.errors?.['required'] || bairro.errors?.['required'] || logradouro.errors?.['required'] || numero.errors?.['required'] || localidade.errors?.['required']) && formDir.submitted"> Você deve preencher os campos </p>
             <button type="submit">Adicionar endereço</button>
             <button type="button" (click)="modifeAddressScreen()">Cancelar</button>
         </form>
