@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { OrdersService } from 'src/app/services/orders.service';
 import { MessageDialogComponent } from '../message-dialog/message-dialog.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-orders',
@@ -15,6 +16,7 @@ export class MyOrdersComponent {
   dataOrderPlaced: any = []
 
   constructor(
+    private router: Router,
     private dialog: MatDialog,
     private ordersService: OrdersService
   ){
@@ -26,27 +28,37 @@ export class MyOrdersComponent {
   }
 
   purchase(): void {
-    this.shoppingCart.forEach( (item: any) => {
-      this.ordersService.registerOrder({
-        orders: item.orders,
-        quantity: item.quantity,
-        price: item.price,
-        image: item.image,
-        id: localStorage.getItem('token')
-      }).subscribe({
-        next: data => {
-          if(data != null){
-            this.shoppingCart = []
-            localStorage.removeItem('shoppingCart')
-            console.log("dialogo de aviso aberto")
-            const dialogRef = this.dialog.open(MessageDialogComponent, {
-              data: { text: 'Pedido(s) feito(s), você pode vê-lo(s) em "Pedidos feitos"' },
-            })
-            dialogRef.afterClosed().subscribe()
+    if((window.localStorage.getItem('haveAddress') == 'true')){
+      this.shoppingCart.forEach( (item: any) => {
+        this.ordersService.registerOrder({
+          orders: item.orders,
+          quantity: item.quantity,
+          price: item.price,
+          image: item.image,
+          id: localStorage.getItem('token')
+        }).subscribe({
+          next: data => {
+            if(data != null){
+              this.shoppingCart = []
+              localStorage.removeItem('shoppingCart')
+              console.log("dialogo de aviso aberto")
+              const dialogRef = this.dialog.open(MessageDialogComponent, {
+                data: { text: 'Pedido(s) feito(s), você pode vê-lo(s) em "Pedidos feitos"' },
+              })
+              dialogRef.afterClosed().subscribe()
+            }
           }
-        }
+        })
       })
-    })
+    } else {
+      console.log("dialogo de aviso aberto")
+      const dialogRef = this.dialog.open(MessageDialogComponent, {
+        data: { text: 'Para fazer um pedido você precisa ter um Endereço cadastrado' },
+      })
+      dialogRef.afterClosed().subscribe({
+        next: () => this.router.navigate(['/profile'])
+      });
+    }
   }
 
   remove(order: string): void {

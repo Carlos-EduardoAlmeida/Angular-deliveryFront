@@ -169,8 +169,10 @@ export class ProfileComponent implements OnInit{
             uf: ""
           }
           this.address = address;
-        }else
+        }else {
           this.address = data;
+          window.localStorage.setItem('haveAddress', 'true');
+        }
       }, error: (err) => {
         console.log(err)
       }
@@ -183,8 +185,12 @@ export class ProfileComponent implements OnInit{
         console.log(data)
         this.addressForm.patchValue(data)
         console.log(this.addressForm)
-      }, error(err){
+      }, error: (err) => {
         console.error(err);
+        console.log("dialogo de exclusão aberto")
+        const dialogRef = this.dialog.open(MessageDialogComponent, {
+          data: { text: 'Cep inválido' },
+        })
       }
     })
   }
@@ -196,6 +202,7 @@ export class ProfileComponent implements OnInit{
           console.log(data)
           this.address = data
           this.modifeAddressScreen();
+          window.localStorage.setItem('haveAddress', 'true');
         }, error(err) {
           console.error(err)
         }
@@ -207,6 +214,7 @@ export class ProfileComponent implements OnInit{
     this.addressService.deleteAddress().subscribe({
       next: data => {
         console.log('deletado');
+        window.localStorage.setItem('haveAddress', 'false');
       },
       complete: () => {
         this.findAddress();

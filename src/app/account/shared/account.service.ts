@@ -17,6 +17,7 @@ export class AccountService {
       next: (data) => {
         response = JSON.parse(JSON.stringify(data));
         window.localStorage.setItem('token', response.id);
+        response.address != null ? window.localStorage.setItem('haveAddress', 'true') : window.localStorage.setItem('haveAddress', 'false');
         console.log(`Login efetuado: ${response.id}`);
       },
       error: (err) => {
@@ -37,9 +38,10 @@ export class AccountService {
     return this.http.post(this.apiUrl, newUser).subscribe({
       next: (data)=> {
         response = JSON.parse(JSON.stringify(data));
-        console.log(response);
+        response.address != null ? window.localStorage.setItem('haveAddress', 'true') : window.localStorage.setItem('haveAddress', 'false');
         window.localStorage.setItem('token', response.id);
         console.log(`Cadastro efetuado: ${response.id}`);
+        window.localStorage.setItem('haveAddress', 'false');
       },
       error: (err) => {
           console.error(err);
