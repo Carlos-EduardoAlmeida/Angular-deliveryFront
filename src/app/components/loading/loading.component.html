@@ -1,3 +1,6 @@
 <div *ngIf="this.loadingService.loading$ | async">
-    <mat-spinner></mat-spinner>
+    <ng-template #matSpinner>
+        <mat-spinner></mat-spinner>
+    </ng-template>
+    <h2 *ngIf="showMessage; else matSpinner"> <span> Aguarde </span> <br> <img src="https://i.pinimg.com/originals/57/61/5b/57615b8c0092a66c1d4058b1692955cc.gif" alt="" width="80px" srcset=""> <br> A API usada está hospedada em uma plataforma gratuita e pode apresentar lentidão SOMENTE na primeira requisição após entrar em modo de economia de dados. Peço compreensão e apenas que aguarde alguns segundos</h2> 
 </div>

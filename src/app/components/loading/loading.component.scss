@@ -7,4 +7,37 @@ div{
     justify-content: center;
     align-items: center;
     z-index: 2000;
+    flex-direction: column;
+    h2{
+        span{
+            color: #ffff00;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+        color: white;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 40%;
+        height: auto;
+        border-radius: 30px;
+        background-color: #e92f48;
+        padding: 20px 30px 30px 30px;
+        @media screen and (max-width:1050px){
+            width: 60%;
+        }
+        @media screen and (max-width:700px){
+            width: 80%;
+        }
+        @media screen and (max-width:550px){
+            width: 95%;
+        }
+        @media screen and (max-width:420px){
+            width: 97%;
+            padding: 15px 20px 20px 20px;
+        }
+        @media screen and (min-width:1550px){
+            width: 30%;
+        }
+    }
 }
