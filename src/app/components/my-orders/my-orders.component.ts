@@ -28,35 +28,38 @@ export class MyOrdersComponent {
   }
 
   purchase(): void {
-    if((window.localStorage.getItem('haveAddress') == 'true')){
-      this.shoppingCart.forEach( (item: any) => {
-        this.ordersService.registerOrder({
+    if (window.localStorage.getItem('haveAddress') === 'true') {
+      const requestData = {
+        id: localStorage.getItem('token'),
+        listRequestPostOrder: this.shoppingCart.map((item: any) => ({
           orders: item.orders,
           quantity: item.quantity,
-          price: item.price,
           image: item.image,
-          id: localStorage.getItem('token')
-        }).subscribe({
-          next: data => {
-            if(data != null){
-              this.shoppingCart = []
-              localStorage.removeItem('shoppingCart')
-              console.log("dialogo de aviso aberto")
-              const dialogRef = this.dialog.open(MessageDialogComponent, {
-                data: { text: 'Pedido(s) feito(s), você pode vê-lo(s) em "Pedidos feitos"' },
-              })
-              dialogRef.afterClosed().subscribe()
-            }
+          price: item.price,
+        })),
+      };
+  
+      console.log(requestData)
+      this.ordersService.registerOrder(requestData).subscribe({
+        next: (data) => {
+          if (data != null) {
+            this.shoppingCart = [];
+            localStorage.removeItem('shoppingCart');
+            console.log('Dialogo de aviso aberto');
+            const dialogRef = this.dialog.open(MessageDialogComponent, {
+              data: { text: 'Pedido(s) feito(s), você pode vê-lo(s) em "Pedidos feitos"' },
+            });
+            dialogRef.afterClosed().subscribe();
           }
-        })
-      })
+        },
+      });
     } else {
-      console.log("dialogo de aviso aberto")
+      console.log('Dialogo de aviso aberto');
       const dialogRef = this.dialog.open(MessageDialogComponent, {
         data: { text: 'Para fazer um pedido você precisa ter um Endereço cadastrado' },
-      })
+      });
       dialogRef.afterClosed().subscribe({
-        next: () => this.router.navigate(['/profile'])
+        next: () => this.router.navigate(['/profile']),
       });
     }
   }
